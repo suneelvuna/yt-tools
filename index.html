@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO Meta Tags -->
+  <title>YT Tools — Free &amp; Private YouTube Downloader &amp; Creator Suite</title>
+  <meta name="title" content="YT Tools — Free &amp; Private YouTube Downloader &amp; Creator Suite" />
+  <meta name="description"
+    content="High-speed free YouTube creator tools: 1080p Video Downloader, MP3 Audio Converter, 1080p Thumbnail Grabber, SEO Tags Extractor, and Metadata Finder." />
+  <meta name="keywords"
+    content="youtube downloader, youtube to mp3, youtube thumbnail downloader, youtube tags extractor, youtube shorts downloader, free youtube tools, creator suite" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ff0000" />
+
+  <!-- Favicon & Stylesheet -->
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=2" />
+  <link rel="apple-touch-icon" href="assets/favicon.png?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YT Tools",
+    "url": "./",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All modern browsers",
+    "description": "High-speed free YouTube video downloader, MP3 converter, thumbnail grabber, SEO keyword extractor, and metadata suite."
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Navigation Header -->
+  <header class="yt-header">
+    <div class="yt-header-inner">
+      <a href="./" class="yt-logo-link" onclick="App.closeTool(); return false;">
+        <div class="yt-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </div>
+        <span>YT Tools</span>
+        <span class="yt-logo-badge">Creator Suite</span>
+      </a>
+
+      <div class="yt-header-actions">
+        <button class="yt-btn-theme" onclick="App.toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Portal Main View -->
+  <main id="yt-portal-view">
+    <!-- Hero Section -->
+    <section class="yt-hero">
+      <div class="yt-hero-inner">
+        <div class="yt-hero-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          High Speed YouTube Processing Engine
+        </div>
+        <h1 class="yt-hero-title">YouTube <span>Creator Suite</span> &amp; Tools</h1>
+        <p class="yt-hero-desc">Fast, free, and private tools for YouTube creators. Download 1080p Full HD video, convert MP3 audio, grab HD thumbnails, and optimize your video SEO.</p>
+
+        <div class="yt-search-box">
+          <input type="text" id="yt-hero-search" class="yt-search-input" placeholder="Search tools (e.g. downloader, thumbnail, tags, metadata...)" />
+          <button class="yt-search-btn" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Filter Tabs -->
+    <section class="yt-categories-wrap">
+      <div class="yt-category-tabs">
+        <button class="yt-cat-btn active" onclick="App.filterCategory('all', this)">All Tools</button>
+        <button class="yt-cat-btn" onclick="App.filterCategory('downloader', this)">Downloader &amp; Audio</button>
+        <button class="yt-cat-btn" onclick="App.filterCategory('thumbnail', this)">Thumbnails</button>
+        <button class="yt-cat-btn" onclick="App.filterCategory('seo', this)">SEO &amp; Tags</button>
+        <button class="yt-cat-btn" onclick="App.filterCategory('metadata', this)">Metadata &amp; Channel</button>
+      </div>
+    </section>
+
+    <!-- Tools Section Grid -->
+    <section class="yt-tools-section">
+      <div id="yt-tools-grid" class="yt-tools-grid"></div>
+    </section>
+  </main>
+
+  <!-- Workspace Active Tool View -->
+  <main id="yt-workspace-view" class="yt-workspace-view">
+    <div class="yt-workspace-card">
+      <div class="yt-workspace-header">
+        <div class="yt-ws-title-group">
+          <div class="yt-ws-icon" id="ws-icon"></div>
+          <div>
+            <h2 class="yt-ws-title" id="ws-title">Tool Title</h2>
+            <p class="yt-ws-desc" id="ws-desc">Tool description</p>
+          </div>
+        </div>
+        <button class="yt-btn-back" onclick="App.closeTool()">
+          Back to Tools
+        </button>
+      </div>
+
+      <div id="yt-tool-container"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="yt-footer">
+    <div class="yt-footer-inner">
+      <div class="yt-footer-bottom">
+        <p>&copy; 2026 <strong>YT Tools</strong> &bull; Free &amp; Private YouTube Creator Suite.</p>
+        <div>
+          <span>100% In-House Processing Engine</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/youtube-tools.js?v=2" defer></script>
+  <script src="js/app.js?v=2" defer></script>
+</body>
+
+</html>

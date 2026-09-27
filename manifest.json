@@ -1,0 +1,16 @@
+{
+  "name": "YouTube Tools Hub",
+  "short_name": "YT Tools",
+  "description": "High-Speed YouTube Video & Audio Downloader, Thumbnail Grabber & SEO Creator Suite",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#ff0000",
+  "icons": [
+    {
+      "src": "assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
