@@ -181,19 +181,43 @@ const server = http.createServer(async (req, res) => {
       const ytDlp = await getYtDlpClient();
       const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-      const streamUrlOutput = await ytDlp.execPromise([
-        videoUrl,
-        '-g',
-        '-f', formatSpec,
-        '--js-runtimes', 'node'
-      ]);
+      // Bypasses YouTube bot verification on Cloud host IPs (Render / AWS / VPS)
+      const clientConfigs = [
+        'youtube:player_client=android,ios,web',
+        'youtube:player_client=ios,android',
+        'youtube:player_client=android_creator,android',
+        'youtube:player_client=mweb,web'
+      ];
 
-      const targetUrl = (streamUrlOutput || '').trim().split('\n')[0];
-      if (targetUrl && targetUrl.startsWith('http')) {
+      let targetUrl = null;
+      let lastErr = null;
+
+      for (const clientArg of clientConfigs) {
+        try {
+          const streamUrlOutput = await ytDlp.execPromise([
+            videoUrl,
+            '-g',
+            '-f', formatSpec,
+            '--extractor-args', clientArg,
+            '--js-runtimes', 'node',
+            '--no-check-certificates'
+          ]);
+
+          const resolved = (streamUrlOutput || '').trim().split(/\r?\n/)[0];
+          if (resolved && resolved.startsWith('http')) {
+            targetUrl = resolved;
+            break;
+          }
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+
+      if (targetUrl) {
         res.writeHead(302, { Location: targetUrl });
         return res.end();
       } else {
-        throw new Error('Stream URL resolution returned empty');
+        throw lastErr || new Error('Stream URL resolution returned empty');
       }
     } catch (err) {
       console.error('[API /api/download Error]:', err.message);
