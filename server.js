@@ -176,17 +176,16 @@ const server = http.createServer(async (req, res) => {
     try {
       const isAudio = format === 'mp3' || format === 'm4a' || quality.includes('k');
       const height = quality.replace('p', '');
-      const formatSpec = isAudio ? 'ba/b' : `bv[height<=${height}]+ba/bv[height<=${height}]/b`;
+      const formatSpec = isAudio ? 'ba/b' : `bv[height<=${height}]/b`;
 
       const ytDlp = await getYtDlpClient();
       const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
       // Bypasses YouTube bot verification on Cloud host IPs (Render / AWS / VPS)
       const clientConfigs = [
-        'youtube:player_client=android,ios,web',
-        'youtube:player_client=ios,android',
-        'youtube:player_client=android_creator,android',
-        'youtube:player_client=mweb,web'
+        'youtube:player_client=android_vr,android',
+        'youtube:player_client=android',
+        'youtube:player_client=android_embedded'
       ];
 
       let targetUrl = null;
@@ -199,7 +198,6 @@ const server = http.createServer(async (req, res) => {
             '-g',
             '-f', formatSpec,
             '--extractor-args', clientArg,
-            '--js-runtimes', 'node',
             '--no-check-certificates'
           ]);
 
