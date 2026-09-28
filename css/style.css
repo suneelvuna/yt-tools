@@ -1,6 +1,7 @@
 /* ==========================================================================
    YT Tools - Pure Vanilla CSS Design System
    YouTube Red Theme (#FF0000), Dark Mode (#0F0F0F), Glassmorphism & High-Speed Creator UI
+   Fully Responsive for All Devices (Mobile, Tablet, Desktop)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap');
@@ -25,7 +26,7 @@
   --bg-surface: #ffffff;
   --bg-card: #ffffff;
   --bg-input: #f1f3f5;
-  --bg-header: rgba(255, 255, 255, 0.92);
+  --bg-header: rgba(255, 255, 255, 0.94);
 
   --text-primary: #0f0f0f;
   --text-secondary: #555555;
@@ -60,7 +61,7 @@
   --bg-surface: #181818;
   --bg-card: #212121;
   --bg-input: #2a2a2a;
-  --bg-header: rgba(15, 15, 15, 0.92);
+  --bg-header: rgba(15, 15, 15, 0.94);
 
   --text-primary: #f1f1f1;
   --text-secondary: #aaaaaa;
@@ -128,7 +129,7 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
 }
 
 .yt-logo-link {
@@ -151,6 +152,7 @@ button, input, select, textarea {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-red);
+  flex-shrink: 0;
 }
 
 .yt-logo-badge {
@@ -183,6 +185,7 @@ button, input, select, textarea {
   justify-content: center;
   cursor: pointer;
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .yt-btn-theme:hover {
@@ -220,7 +223,7 @@ button, input, select, textarea {
 
 .yt-hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -0.03em;
@@ -238,11 +241,12 @@ button, input, select, textarea {
   margin: 0 auto 28px;
 }
 
-/* Search Bar */
+/* Hero Search Bar */
 .yt-search-box {
   position: relative;
   max-width: 640px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .yt-search-input {
@@ -298,6 +302,7 @@ button, input, select, textarea {
   overflow-x: auto;
   padding-bottom: 8px;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .yt-category-tabs::-webkit-scrollbar {
@@ -315,6 +320,7 @@ button, input, select, textarea {
   white-space: nowrap;
   cursor: pointer;
   transition: all var(--transition-fast);
+  min-height: 42px;
 }
 
 .yt-cat-btn:hover {
@@ -336,12 +342,14 @@ button, input, select, textarea {
   margin: 0 auto;
   padding: 0 20px 60px;
   flex: 1;
+  width: 100%;
 }
 
 .yt-tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
 .yt-tool-card {
@@ -380,6 +388,7 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .yt-card-badge {
@@ -438,6 +447,7 @@ button, input, select, textarea {
   margin: 24px auto 60px;
   padding: 0 20px;
   display: none;
+  width: 100%;
 }
 
 .yt-workspace-card {
@@ -475,6 +485,7 @@ button, input, select, textarea {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-red);
+  flex-shrink: 0;
 }
 
 .yt-ws-title {
@@ -501,12 +512,101 @@ button, input, select, textarea {
   align-items: center;
   gap: 8px;
   transition: all var(--transition-fast);
+  min-height: 40px;
 }
 
 .yt-btn-back:hover {
   background: var(--primary);
   color: #fff;
   border-color: var(--primary);
+}
+
+/* Tool Component Layout Cards */
+.yt-url-input-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 28px;
+}
+
+.yt-input-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.yt-input-card-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.yt-input-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.yt-input-group .yt-input {
+  flex: 1;
+}
+
+.yt-chip-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.yt-results-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.yt-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.yt-video-info-header {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.yt-video-info-thumb {
+  width: 200px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.yt-thumb-preview-box {
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.yt-grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 
 /* UI Buttons & Input Components */
@@ -522,6 +622,13 @@ button, input, select, textarea {
   cursor: pointer;
   border: 1px solid transparent;
   transition: all var(--transition-fast);
+  min-height: 44px;
+}
+
+.yt-btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  min-height: 38px;
 }
 
 .yt-btn-primary {
@@ -560,6 +667,7 @@ button, input, select, textarea {
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all var(--transition-fast);
+  min-height: 38px;
 }
 
 .yt-chip:hover {
@@ -592,7 +700,8 @@ button, input, select, textarea {
   overflow-x: auto;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  margin-top: 20px;
+  margin-top: 16px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .yt-format-table {
@@ -600,6 +709,7 @@ button, input, select, textarea {
   border-collapse: collapse;
   text-align: left;
   font-size: 0.9rem;
+  min-width: 480px;
 }
 
 .yt-format-table th {
@@ -630,6 +740,7 @@ button, input, select, textarea {
   flex-direction: column;
   gap: 10px;
   pointer-events: none;
+  max-width: 100%;
 }
 
 .yt-toast {
@@ -692,15 +803,91 @@ button, input, select, textarea {
   color: var(--text-muted);
 }
 
-/* Responsive Styles */
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
 @media (max-width: 768px) {
+  .yt-header-inner {
+    padding: 0 16px;
+    height: 60px;
+  }
+  .yt-logo-link {
+    font-size: 1.2rem;
+  }
+  .yt-logo-icon {
+    width: 34px;
+    height: 34px;
+  }
+  .yt-btn-theme {
+    width: 38px;
+    height: 38px;
+  }
+
+  .yt-hero {
+    padding: 32px 16px 24px;
+  }
   .yt-hero-title {
     font-size: 2.1rem;
   }
+  .yt-hero-desc {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .yt-tools-section, .yt-categories-wrap, .yt-workspace-view {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .yt-tools-grid {
     grid-template-columns: 1fr;
   }
-  .yt-workspace-card {
-    padding: 20px;
+
+  .yt-workspace-card, .yt-url-input-card, .yt-results-card {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+  }
+
+  .yt-ws-title {
+    font-size: 1.35rem;
+  }
+
+  .yt-video-info-header {
+    flex-direction: column;
+  }
+
+  .yt-video-info-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  .yt-toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .yt-toast {
+    min-width: unset;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .yt-input-group {
+    flex-direction: column;
+  }
+
+  .yt-input-group .yt-btn {
+    width: 100%;
+  }
+
+  .yt-logo-badge {
+    display: none;
+  }
+
+  .yt-footer-bottom {
+    flex-direction: column;
+    text-align: center;
   }
 }
