@@ -181,12 +181,17 @@ const server = http.createServer(async (req, res) => {
       const ytDlp = await getYtDlpClient();
       const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-      // Bypasses YouTube bot verification on Cloud host IPs (Render / AWS / VPS)
+      // Bypasses YouTube bot verification and 429 errors on Cloud hosting IPs (Render / AWS / VPS)
       const clientConfigs = [
-        'youtube:player_client=android_vr,android',
-        'youtube:player_client=android',
-        'youtube:player_client=android_embedded'
+        'youtube:player_client=tv,mweb,web',
+        'youtube:player_client=tv_embedded,mweb',
+        'youtube:player_client=mweb,web',
+        'youtube:player_client=web'
       ];
+
+      const robustFormatSpec = isAudio 
+        ? 'ba/b/18/best' 
+        : `b[height<=${height}]/bv[height<=${height}]+ba/b/18/best`;
 
       let targetUrl = null;
       let lastErr = null;
@@ -196,8 +201,9 @@ const server = http.createServer(async (req, res) => {
           const streamUrlOutput = await ytDlp.execPromise([
             videoUrl,
             '-g',
-            '-f', formatSpec,
+            '-f', robustFormatSpec,
             '--extractor-args', clientArg,
+            '--js-runtimes', 'node',
             '--no-check-certificates'
           ]);
 
